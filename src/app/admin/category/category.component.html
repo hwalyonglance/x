@@ -1,5 +1,5 @@
 <h1 class="mat-h1">Category</h1>
-<form [formGroup]='form' style="max-width: 500px">
+<form *ngIf='showForm' [formGroup]='form' (ngSubmit)='submit()' style="max-width: 500px">
 	<mat-card>
 		<mat-card-content fxLayout='column'>
 			<mat-form-field>
@@ -13,8 +13,9 @@
 			</mat-form-field>
 		</mat-card-content>
 		<mat-card-actions align='end'>
+			<button *ngIf='modeEdit' (click)='cancelEdit()' color='secondary' mat-button>Batal</button>
 			<button color='primary' [disabled]='!form.valid' mat-raised-button>Simpan</button>
 		</mat-card-actions>
 	</mat-card>
 </form>
-<!-- <app-datatable></app-datatable> -->
+<app-datatable (add)='showForm=true' [columns]='columns' [data]='data' (edit)='edit($event)' (remove)='remove($event)'></app-datatable>
