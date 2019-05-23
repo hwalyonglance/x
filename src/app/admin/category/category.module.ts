@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule} from '@angular/material/button';
 import { MatCardModule} from '@angular/material/card';
@@ -15,6 +16,7 @@ import { CategoryComponent } from './category.component';
 
 const ADMIN_CATEGORY_MODULES = [
 	CommonModule,
+	AngularFirestoreModule,
 	FlexLayoutModule,
 	
 	MatButtonModule,

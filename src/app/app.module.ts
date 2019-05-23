@@ -36,7 +36,7 @@ import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/mate
 			appId: "1:306098183481:web:e70786ac2ae64075"
 		}),
 		AngularFireAuthModule,
-		AngularFirestoreModule,
+		AngularFirestoreModule.enablePersistence(),
 		MatToolbarModule,
 		MatButtonModule,
 		MatCardModule,
