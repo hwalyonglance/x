@@ -28,9 +28,7 @@ export class CategoryComponent implements OnInit {
 					}
 				});
 			})
-		).subscribe(c => {
-			console.log('snapshotChanges', c);
-		});
+		).subscribe(c =>console.log('snapshotChanges', c));
 	}
 	buildForm() {
 		this.form = this.fb.group({
