@@ -20,7 +20,7 @@ export class CategoryComponent implements OnInit {
 		{ name: 'id', header: 'Id', hidden: false },
 		{ name: 'name', header: 'Nama', hidden: false },
 		{ name: 'description', header: 'Keterangan', hidden: false },
-		{ name: 'product', header: 'Produk', hidden: false },
+		{ name: 'product', header: 'Produk', hidden: true },
 	];
 	data = [];
 	form: FormGroup;
@@ -32,7 +32,6 @@ export class CategoryComponent implements OnInit {
 		private fb: FormBuilder,
 	) {}
 	ngOnInit() {
-		this.buildForm();
 		this.afs.collection('categories')
 		.snapshotChanges()
 		.pipe(
@@ -46,6 +45,11 @@ export class CategoryComponent implements OnInit {
 			})
 		).subscribe(data=>this.data=data);
 	}
+	add() {
+		this.buildForm();
+		this.modeEdit = false;
+		this.showForm = true;
+	}
 	buildForm() {
 		this.form = this.fb.group({
 			name: [''],
@@ -53,12 +57,12 @@ export class CategoryComponent implements OnInit {
 		})
 	}
 	cancelEdit() {
-		this.modeEdit = false;
+		this.showForm = this.modeEdit = false;
 		this.id = undefined;
 		this.buildForm();
 	}
 	edit(category: Category) {
-		this.modeEdit = true;
+		this.showForm = this.modeEdit = true;
 		this.id = category.id;
 		this.form.get('name').setValue(category.name);
 		this.form.get('description').setValue(category.description);
