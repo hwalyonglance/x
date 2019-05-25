@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { map } from 'rxjs/operators';
 
-import { Category } from '../../shared/category';
+import { Category } from '../../shared/model';
 
 @Component({
 	selector: 'app-category',
@@ -17,7 +17,7 @@ import { Category } from '../../shared/category';
 export class CategoryComponent implements OnInit {
 	columns = [
 		// { name: '_selection', header: '', hidden: false },
-		{ name: 'id', header: 'Id', hidden: false },
+		{ name: 'id', header: 'Id', hidden: true },
 		{ name: 'name', header: 'Nama', hidden: false },
 		{ name: 'description', header: 'Keterangan', hidden: false },
 		{ name: 'product', header: 'Produk', hidden: true },

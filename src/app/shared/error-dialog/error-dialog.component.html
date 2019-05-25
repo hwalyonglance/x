@@ -1,3 +1,7 @@
-<p>
-  error-dialog works!
-</p>
+<h1 mat-dialog-title>ERROR</h1>
+<div mat-dialog-content>
+	<pre>{{ data?.error | json }}</pre>
+</div>
+<div mat-dialog-actions align='end'>
+	<button cdkFocusInitial (click)='data.accept.next()' color='primary' mat-button mat-dialog-close>Tutup</button>
+</div>
