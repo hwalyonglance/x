@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { map } from 'rxjs/operators';
 
-import { Category } from '../../shared/model';
+import { Category } from '../../model';
 
 @Component({
 	selector: 'app-category',

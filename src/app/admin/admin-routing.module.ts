@@ -6,10 +6,11 @@ import { AdminComponent } from './admin.component';
 const routes: Routes = [
 	{ path: '', component: AdminComponent, children: [
 		{ path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
+		{ path: 'account', loadChildren: './account/account.module#AccountModule' },
+		{ path: 'author', loadChildren: './author/author.module#AuthorModule' },
+		{ path: 'book', loadChildren: './book/book.module#BookModule' },
 		{ path: 'category', loadChildren: './category/category.module#CategoryModule' },
-		// { path: 'product', component: DashboardComponent },
-		// { path: 'stock', component: DashboardComponent },
-		// { path: 'sales', component: DashboardComponent },
+		{ path: 'publisher', loadChildren: './publisher/publisher.module#PublisherModule' },
 	] },
 	{ path: '', pathMatch: 'full', redirectTo: 'dashboard' },
 	{ path: '**', pathMatch: 'full', redirectTo: 'dashboard' },

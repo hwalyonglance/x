@@ -12,6 +12,10 @@ import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 		SignOutDialogComponent,
 		ErrorDialogComponent,
 	],
+	entryComponents:[
+		SignOutDialogComponent,
+		ErrorDialogComponent,
+	],
 	imports: [
 		CommonModule,
 		MatDialogModule
@@ -20,4 +24,4 @@ import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 		DialogService
 	]
 })
-export class SharedModule { }
+export class DialogModule { }

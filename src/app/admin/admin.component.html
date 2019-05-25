@@ -3,8 +3,11 @@
 		<mat-toolbar color='primary'>Menu</mat-toolbar>
 		<mat-nav-list>
 			<a mat-list-item routerLink="dashboard" routerLinkActive='active'>Dashboard</a>
+			<a mat-list-item routerLink="account" routerLinkActive='active'>Akun</a>
+			<a mat-list-item routerLink="book" routerLinkActive='active'>Buku</a>
 			<a mat-list-item routerLink="category" routerLinkActive='active'>Kategori</a>
-			<a mat-list-item routerLink="product" routerLinkActive='active'>Produk</a>
+			<a mat-list-item routerLink="publisher" routerLinkActive='active'>Penerbit</a>
+			<a mat-list-item routerLink="author" routerLinkActive='active'>Penulis</a>
 			<a mat-list-item routerLink="stock" routerLinkActive='active'>Stok</a>
 			<a mat-list-item routerLink="sales" routerLinkActive='active'>Penjualan</a>
 		</mat-nav-list>
@@ -14,7 +17,7 @@
 			<button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
 				<mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
 			</button>
-			<span>bookstore</span>
+			<span>{{admin.title}}</span>
 		</mat-toolbar>
 		<div style="padding: 20px">
 			<router-outlet></router-outlet>

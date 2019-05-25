@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DatatableModule } from '../datatable/datatable.module';
 
 import { AdminRoutingModule } from './admin-routing.module';
+import { AdminService } from './admin.service';
 import { AdminComponent } from './admin.component';
 
 const ADMIN_MODULES = [
@@ -47,5 +48,8 @@ const ADMIN_MODULES = [
 		...ADMIN_MODULES,
 		AdminRoutingModule
 	],
+	providers:[
+		AdminService
+	]
 })
 export class AdminModule { }

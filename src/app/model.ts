@@ -1,15 +1,3 @@
-import { EventEmitter } from '@angular/core';
-
-export interface SharedDialog {
-	accept: EventEmitter<any>;
-	cancel: EventEmitter<any>;
-	error?: any;
-	title?: string;
-	text?: string;
-	cancelBtnText?: string;
-	acceptBtnText?: string;
-}
-
 export interface Account {
 	id: string;
 	displayName: string;
@@ -20,19 +8,28 @@ export interface Account {
 	roles?: string[];
 }
 
+export interface Author {
+	id: string;
+	books?: Book[];
+	name: string;
+	phone: string;
+}
+
 export interface Book {
 	id: string;
-	author: string;
+	authorId: string;
+	author?: Author;
 	cover: {
 		back: string;
 		front: string;
 	};
-	categoryIds: string;
+	categoryIds: string[];
 	categories?: Category[];
 	description: string;
 	price: number;
 	publisherId: string;
-	publisher: Publisher;
+	publisher?: Publisher;
+	releaseYear: Date;
 	stock: number;
 	title: string;
 }
@@ -46,6 +43,9 @@ export interface Category {
 
 export interface Publisher {
 	id: string;
-	name: string;
+	books?: Book[];
 	description: string;
+	name: string;
+	address: string;
+	phone: string;
 }

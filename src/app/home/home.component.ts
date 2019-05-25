@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
+
+import { AuthService } from '../auth.service';
 
 @Component({
 	selector: 'app-home',
@@ -8,8 +9,11 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class HomeComponent implements OnInit {
 	constructor(
-		private afAuth: AngularFireAuth
+		private auth: AuthService
 	) { }
 	ngOnInit() {
+	}
+	googleLogin() {
+		this.auth.googleLogin();
 	}
 }
