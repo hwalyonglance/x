@@ -5,7 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { map } from 'rxjs/operators';
 
-import { Category } from '../../../model';
+import { Category, IFormDialog } from '../../../model';
 
 import { AdminService } from '../../admin.service';
 
@@ -16,17 +16,19 @@ import { AdminService } from '../../admin.service';
 })
 export class CategoryFormComponent implements OnInit {
 	form: FormGroup;
-	id: string;
-	modeEdit = false;
 	constructor(
 		private afs: AngularFirestore,
 		private fb: FormBuilder,
 		public admin: AdminService,
-		@Inject(MAT_DIALOG_DATA) public data: any,
+		@Inject(MAT_DIALOG_DATA) public data: IFormDialog<Category>,
 		public dialogRef: MatDialogRef<CategoryFormComponent>
 	) { }
 	ngOnInit() {
 		this.buildForm();
+		if (this.data.editMode) {
+			this.form.get('name').setValue(this.data.value.name);
+			this.form.get('description').setValue(this.data.value.description);
+		}
 	}
 	buildForm() {
 		this.form = this.fb.group({
@@ -35,10 +37,10 @@ export class CategoryFormComponent implements OnInit {
 		})
 	}
 	submit() {
-		if (this.form.valid) {
+		if (this.form.valid && confirm('Simpan data ini?')) {
 			const value = this.form.value;
-			if (this.modeEdit) {
-				this.afs.collection('categories').doc(this.id).update(value);
+			if (this.data.editMode) {
+				this.afs.collection('categories').doc(this.data.id).update(value);
 			} else {
 				this.afs.collection('categories').add(value);
 			}

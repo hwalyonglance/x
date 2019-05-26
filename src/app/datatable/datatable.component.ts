@@ -39,7 +39,6 @@ export class DatatableComponent implements AfterViewInit, OnInit {
 	@Output() add = new EventEmitter;
 	@Output() edit = new EventEmitter;
 	@Output() remove = new EventEmitter;
-	@Output() search = new EventEmitter;
 	@ViewChild(MatPaginator, {static:false}) paginator: MatPaginator;
 	@ViewChild(MatSort, {static:false}) sort: MatSort;
 
@@ -49,7 +48,12 @@ export class DatatableComponent implements AfterViewInit, OnInit {
 	displayedSearchColumns = this.displayedColumns.map(c=>'search_'+c);
 	// initialSelection = [];
 	filterForm: FormGroup;
+	search = false;
 	// selection = new SelectionModel(this.allowMultiSelect, this.initialSelection);;
+	get filtered() {
+		return Object.keys(this.filterForm.value)
+			.some(col=>!!this.filterForm.value[col])
+	}
 	constructor(
 		private fb: FormBuilder,
 		private dialog: DialogService,

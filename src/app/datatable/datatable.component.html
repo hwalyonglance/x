@@ -1,13 +1,13 @@
 <div class="mat-elevation-z8">
 	<mat-toolbar color='primary' dense>
-		<button (click)='add.next()' mat-icon-button><mat-icon>add</mat-icon></button>
-		<button (click)='search.next()' mat-icon-button><mat-icon>search</mat-icon></button>
+		<button (click)='add.next()' mat-button><mat-icon>add</mat-icon>Tambah</button>
+		<button *ngIf='!search' (click)='search=true' mat-button><mat-icon>search</mat-icon>Cari</button>
+		<button *ngIf='filtered' (click)='filterForm.reset()' mat-button><mat-icon>clear</mat-icon>Bersihkan Pencarian</button>
 	</mat-toolbar>
 	<form [formGroup]='filterForm'>
 		<table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Categories">
-			<tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+			<tr mat-header-row *matHeaderRowDef="search ? displayedSearchColumns: displayedColumns;"></tr>
 			<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-			<tr mat-header-row *matHeaderRowDef="displayedSearchColumns;"></tr>
 
 			<!-- <ng-container matColumnDef="_selection">
 				<th mat-header-cell *matHeaderCellDef>
@@ -26,9 +26,10 @@
 					<td mat-cell *matCellDef="let row">{{row[col.name]}}</td>
 				</ng-container>
 				<ng-container matColumnDef="{{ 'search_'+col.name }}">
-					<th mat-header-cell *matHeaderCellDef mat-sort-header>
-						<mat-form-field floatLabel='never'>
-							<input formControlName='{{ col.name }}' matInput matNativeControl [name]="'search_'+col.name" [placeholder]="'Filter '+col.header">
+					<th mat-header-cell *matHeaderCellDef>
+						<mat-form-field floatLabel='float'>
+							<label [for]="'search_'+col.name">{{ col.header }}</label>
+							<input formControlName='{{ col.name }}' [id]="col.name" matInput matNativeControl [name]="'search_'+col.name" [placeholder]="'Filter '+col.header">
 						</mat-form-field>
 					</th>
 				</ng-container>
@@ -45,7 +46,9 @@
 				</td>
 			</ng-container>
 			<ng-container matColumnDef="search__actions">
-				<th mat-header-cell *matHeaderCellDef="let row" mat-sort-header>  </th>
+				<th mat-header-cell *matHeaderCellDef="let row" style="text-align: left;">
+					<button *ngIf='search' (click)='search=false' mat-icon-button><mat-icon>clear</mat-icon>Tutup</button>
+				</th>
 			</ng-container>
 		</table>
 	</form>
