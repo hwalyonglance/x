@@ -12,6 +12,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { DialogModule } from '../dialog/dialog.module';
+
 import { DatatableComponent } from './datatable.component';
 
 const DATATABLE_MODULES = [
@@ -28,6 +30,8 @@ const DATATABLE_MODULES = [
 	MatSortModule,
 	MatTableModule,
 	MatToolbarModule,
+
+	DialogModule
 ];
 
 @NgModule({

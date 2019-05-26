@@ -37,7 +37,7 @@ export class AdminComponent implements OnInit {
 		map(result => result.matches)
 		);
 	constructor(
-		private admin: AdminService,
+		public admin: AdminService,
 		private breakpointObserver: BreakpointObserver,
 	) {}
 

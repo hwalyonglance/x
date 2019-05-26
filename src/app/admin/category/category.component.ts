@@ -1,20 +1,28 @@
 import {
+	AfterViewInit,
 	Component,
+	ɵComponentType as ComponentType,
 	OnInit,
+	ViewChild,
 } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { map } from 'rxjs/operators';
 
+import { DatatableComponent } from '../../datatable/datatable.component';
+import { DialogService } from '../../dialog/dialog.service';
 import { Category } from '../../model';
+import { AdminService } from '../admin.service';
+import { CategoryFormComponent } from './category-form/category-form.component';
 
 @Component({
 	selector: 'app-category',
 	templateUrl: './category.component.html',
 	styleUrls: ['./category.component.scss']
 })
-export class CategoryComponent implements OnInit {
+export class CategoryComponent implements AfterViewInit, OnInit {
+	@ViewChild(DatatableComponent, {static:false}) datatableRef: DatatableComponent;
 	columns = [
 		// { name: '_selection', header: '', hidden: false },
 		{ name: 'id', header: 'Id', hidden: true },
@@ -23,65 +31,46 @@ export class CategoryComponent implements OnInit {
 		{ name: 'product', header: 'Produk', hidden: true },
 	];
 	data = [];
-	form: FormGroup;
-	id: string;
-	modeEdit = false;
-	showForm = false;
 	constructor(
 		private afs: AngularFirestore,
+		private dialog: DialogService,
 		private fb: FormBuilder,
+		public admin: AdminService,
 	) {}
+	ngAfterViewInit() {
+
+	}
 	ngOnInit() {
+		this.admin.title = 'Kategori';
 		this.afs.collection('categories')
 		.snapshotChanges()
 		.pipe(
-			map(categories=>{
-				return categories.map(category=>{
-					return {
-						id: category.payload.doc.id,
-						...category.payload.doc.data()
-					}
-				});
-			})
+			map(categories=>categories.map(category=>({
+				id: category.payload.doc.id,
+				...category.payload.doc.data()
+			})))
 		).subscribe(data=>this.data=data);
 	}
-	add() {
-		this.buildForm();
-		this.modeEdit = false;
-		this.showForm = true;
+	onAdd() {
+		let dialogRef = this.dialog.matDialog.open(CategoryFormComponent, {
+			data: {
+				modeEdit: false,
+			}
+		});
 	}
-	buildForm() {
-		this.form = this.fb.group({
-			name: [''],
-			description: [''],
-		})
-	}
-	cancelEdit() {
-		this.showForm = this.modeEdit = false;
-		this.id = undefined;
-		this.buildForm();
-	}
-	edit(category: Category) {
-		this.showForm = this.modeEdit = true;
-		this.id = category.id;
-		this.form.get('name').setValue(category.name);
-		this.form.get('description').setValue(category.description);
+	onEdit(category: Category) {
+		let dialogRef = this.dialog.matDialog.open(CategoryFormComponent, {
+			data: {
+				id: category.id,
+				modeEdit: false,
+				value: category
+			}
+		});
 	}
 	remove(category: Category) {
 		if (confirm('Hapus kategori: '+category.name+'?')) {
 			this.afs.collection('categories').doc(category.id).delete();
 		}
 	}
-	submit() {
-		if (this.form.valid) {
-			const value = this.form.value;
-			if (this.modeEdit) {
-				this.afs.collection('categories').doc(this.id).update(value);
-			} else {
-				this.afs.collection('categories').add(value);
-			}
-			this.buildForm();
-			this.showForm = false;
-		}
-	}
+	
 }

@@ -1,6 +1,7 @@
 import {
 	AfterViewInit,
 	Component,
+	ɵComponentType as ComponentType,
 	EventEmitter,
 	Input,
 	OnInit,
@@ -8,10 +9,13 @@ import {
 	ViewChild,
 } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
+import { MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormBuilder, FormGroup } from '@angular/forms';
+
+import { DialogService } from '../dialog/dialog.service';
 
 @Component({
 	selector: 'app-datatable',
@@ -36,8 +40,8 @@ export class DatatableComponent implements AfterViewInit, OnInit {
 	@Output() edit = new EventEmitter;
 	@Output() remove = new EventEmitter;
 	@Output() search = new EventEmitter;
-	@ViewChild(MatPaginator) paginator: MatPaginator;
-	@ViewChild(MatSort) sort: MatSort;
+	@ViewChild(MatPaginator, {static:false}) paginator: MatPaginator;
+	@ViewChild(MatSort, {static:false}) sort: MatSort;
 
 	// allowMultiSelect = true;
 	dataSource = new MatTableDataSource;
@@ -48,6 +52,7 @@ export class DatatableComponent implements AfterViewInit, OnInit {
 	// selection = new SelectionModel(this.allowMultiSelect, this.initialSelection);;
 	constructor(
 		private fb: FormBuilder,
+		private dialog: DialogService,
 	) { }
 	ngAfterViewInit() {
 		this.dataSource.paginator = this.paginator;

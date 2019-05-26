@@ -57,26 +57,6 @@ export class AuthService {
 			}
 		});
 	}
-	signOut() {
-		let dialog = this.dialog.open('signOut');
-		dialog.componentInstance.data.cancel.subscribe(_ => {
-			dialog.close();
-			dialog = null;
-		});
-		return dialog.componentInstance.data.accept
-			.pipe(
-				switchMap(a => {
-					return from(this.afAuth.auth.signOut());
-				})
-			)
-			.subscribe(_ => {
-				dialog.close();
-				dialog = null;
-				this.loggedIn = false;
-				this._account.next(null);
-				this._router.navigate(['/']);
-			});
-	}
 	private async _oAuthLogin(provider: firebase.auth.AuthProvider) {
 		// const trace = perf.trace('userLogin');
 		// trace.start();
@@ -98,19 +78,6 @@ export class AuthService {
 			});
 		}
 	}
-	////// OAuth Methods /////
-	googleLogin() {
-		return this._oAuthLogin(new firebase.auth.GoogleAuthProvider());
-	}
-	githubLogin() {
-		return this._oAuthLogin(new firebase.auth.GithubAuthProvider());
-	}
-	facebookLogin() {
-		return this._oAuthLogin(new firebase.auth.FacebookAuthProvider());
-	}
-	twitterLogin() {
-		return this._oAuthLogin(new firebase.auth.TwitterAuthProvider());
-	}
 	anonymousLogin(): Observable<firebase.auth.UserCredential> {
 		return from(this.afAuth.auth.signInAnonymously());
 	}
@@ -128,11 +95,43 @@ export class AuthService {
 	): Observable<firebase.auth.UserCredential> {
 		return from(this.afAuth.auth.signInWithEmailAndPassword(email, password));
 	}
+	facebookLogin() {
+		return this._oAuthLogin(new firebase.auth.FacebookAuthProvider());
+	}
+	googleLogin() {
+		return this._oAuthLogin(new firebase.auth.GoogleAuthProvider());
+	}
+	githubLogin() {
+		return this._oAuthLogin(new firebase.auth.GithubAuthProvider());
+	}
 	resetPassword(email: string): Observable<void> {
 		return from(firebase.auth().sendPasswordResetEmail(email));
 	}
+	signOut() {
+		let dialog = this.dialog.open('signOut');
+		dialog.componentInstance.data.cancel.subscribe(_ => {
+			dialog.close();
+			dialog = null;
+		});
+		return dialog.componentInstance.data.accept
+			.pipe(
+				switchMap(a => {
+					return from(this.afAuth.auth.signOut());
+				})
+			)
+			.subscribe(_ => {
+				dialog.close();
+				dialog = null;
+				this.loggedIn = false;
+				this._account.next(null);
+				this._router.navigate(['/']);
+			});
+	}
 	state() {
 		return this.afAuth.authState;
+	}
+	twitterLogin() {
+		return this._oAuthLogin(new firebase.auth.TwitterAuthProvider());
 	}
 	hasRole(roles: string[], op: '&&' | '||' = '||') {
 		if (this.account) {

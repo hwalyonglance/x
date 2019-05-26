@@ -1,0 +1,19 @@
+<form [formGroup]='form' (ngSubmit)='submit()' style="max-width: 500px">
+	<mat-card>
+		<mat-card-content fxLayout='column'>
+			<mat-form-field>
+				<input formControlName='name' matInput maxlength="32" minlength="1" name="name" placeholder='Nama Kategori' required>
+				<mat-hint align='end'>{{ form.get('name').value.length }}/32</mat-hint>
+			</mat-form-field>
+			<mat-form-field>
+				<textarea formControlName='description' matInput matTextareaAutosize matAutosizeMaxRows='8' maxlength="512" minlength="2" name="description" placeholder="Keterangan Kategori" required>
+				</textarea>
+				<mat-hint align='end'>{{ form.get('description').value.length }}/512</mat-hint>
+			</mat-form-field>
+		</mat-card-content>
+		<mat-card-actions align='end'>
+			<button (click)='dialogRef.close()' color='secondary' mat-button type="button">Batal</button>
+			<button color='primary' [disabled]='!form.valid' mat-raised-button>Simpan</button>
+		</mat-card-actions>
+	</mat-card>
+</form>
