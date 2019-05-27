@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutModule } from '@angular/cdk/layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule} from '@angular/material/button';
 import { MatCardModule} from '@angular/material/card';
 import { MatGridListModule} from '@angular/material/grid-list';
@@ -12,6 +13,7 @@ import { DashboardComponent } from './dashboard.component';
 
 const DASHBOARD_MODULES = [
 	CommonModule,
+	FlexLayoutModule,
 	
 	LayoutModule,
 	MatButtonModule,
