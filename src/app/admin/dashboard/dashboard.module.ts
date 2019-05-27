@@ -5,9 +5,7 @@ import { MatButtonModule} from '@angular/material/button';
 import { MatCardModule} from '@angular/material/card';
 import { MatGridListModule} from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
@@ -20,10 +18,7 @@ const DASHBOARD_MODULES = [
 	MatCardModule,
 	MatGridListModule,
 	MatIconModule,
-	MatListModule,
 	MatMenuModule,
-	MatToolbarModule,
-
 ];
 
 @NgModule({

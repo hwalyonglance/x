@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
+import { Inject, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule} from '@angular/material/button';
 import { MatCardModule} from '@angular/material/card';
-import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatGridListModule} from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -15,6 +15,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { DatatableModule } from '../datatable/datatable.module';
+import { FORM_FIELD_APPEARANCE } from '../constant';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminService } from './admin.service';
@@ -49,7 +50,8 @@ const ADMIN_MODULES = [
 		AdminRoutingModule
 	],
 	providers:[
-		AdminService
+		AdminService,
+		{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: FORM_FIELD_APPEARANCE }
 	]
 })
 export class AdminModule { }

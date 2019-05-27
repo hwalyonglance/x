@@ -2,7 +2,8 @@
 	<mat-toolbar color='primary' dense>
 		<button (click)='add.next()' mat-button><mat-icon>add</mat-icon>Tambah</button>
 		<button *ngIf='!search' (click)='search=true' mat-button><mat-icon>search</mat-icon>Cari</button>
-		<button *ngIf='filtered' (click)='filterForm.reset()' mat-button><mat-icon>clear</mat-icon>Bersihkan Pencarian</button>
+		<button *ngIf='search' (click)='search=false' mat-button><mat-icon>clear</mat-icon>Tutup</button>
+		<button *ngIf='filtered' (click)='filterForm.reset()' mat-button><mat-icon>delete</mat-icon>Bersihkan Pencarian</button>
 	</mat-toolbar>
 	<form [formGroup]='filterForm'>
 		<table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Categories">
@@ -27,9 +28,9 @@
 				</ng-container>
 				<ng-container matColumnDef="{{ 'search_'+col.name }}">
 					<th mat-header-cell *matHeaderCellDef>
-						<mat-form-field floatLabel='float'>
+						<mat-form-field floatLabel='never'>
 							<label [for]="'search_'+col.name">{{ col.header }}</label>
-							<input formControlName='{{ col.name }}' [id]="col.name" matInput matNativeControl [name]="'search_'+col.name" [placeholder]="'Filter '+col.header">
+							<input formControlName='{{ col.name }}' [id]="col.name" matInput matNativeControl [name]="'search_'+col.name">
 						</mat-form-field>
 					</th>
 				</ng-container>
@@ -46,9 +47,7 @@
 				</td>
 			</ng-container>
 			<ng-container matColumnDef="search__actions">
-				<th mat-header-cell *matHeaderCellDef="let row" style="text-align: left;">
-					<button *ngIf='search' (click)='search=false' mat-icon-button><mat-icon>clear</mat-icon>Tutup</button>
-				</th>
+				<th mat-header-cell *matHeaderCellDef="let row"></th>
 			</ng-container>
 		</table>
 	</form>

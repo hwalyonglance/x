@@ -1,3 +1,14 @@
-<p>
-  author-form works!
-</p>
+<form [formGroup]='form' fxLayout='column' (ngSubmit)='submit()' style="max-width: 500px">
+	<mat-form-field>
+		<input formControlName='name' id="name" matInput maxlength="32" minlength="1" name="name" placeholder='Nama Penulis' required>
+		<mat-hint align='end'>{{ form.get('name').value.length }}/32</mat-hint>
+	</mat-form-field>
+	<mat-form-field [floatLabel]='false'>
+		<input formControlName='phone' id="phone" matInput maxlength="16" minlength="10" name="phone" placeholder='No. Telepon' required>
+		<mat-hint align='end'>{{ form.get('phone').value.length }}/16</mat-hint>
+	</mat-form-field>
+	<div fxFlex fxLayout='row' fxLayoutAlign='end' style="margin-top: 8px">
+		<button (click)='dialogRef.close()' color='secondary' mat-button type="button">Batal</button>
+		<button color='primary' [disabled]='!form.valid' mat-raised-button>Simpan</button>
+	</div>
+</form>

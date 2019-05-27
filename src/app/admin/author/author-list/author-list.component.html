@@ -1,1 +1,1 @@
-<app-datatable [columns]='columns' [data]='data'></app-datatable>
+<app-datatable (add)='onAdd()' [columns]='columns' [data]='data' (edit)='onEdit($event)' (remove)='remove($event)'></app-datatable>

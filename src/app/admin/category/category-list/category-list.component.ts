@@ -56,7 +56,7 @@ export class CategoryListComponent implements OnInit {
 		});
 	}
 	remove(category: Category) {
-		if (confirm('Hapus kategori: '+category.name+'?')) {
+		if (confirm('Hapus kategori '+category.name+'?')) {
 			this.afs.collection('categories').doc(category.id).delete();
 		}
 	}

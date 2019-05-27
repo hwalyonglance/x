@@ -36,8 +36,8 @@ export interface Book {
 
 export interface IFormDialog<T> {
 	editMode: boolean;
-	id: string;
-	value: Partial<T>;
+	id?: string;
+	value?: Partial<T>;
 }
 
 export interface Category {
