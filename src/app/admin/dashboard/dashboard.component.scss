@@ -9,49 +9,14 @@
 }
 
 .container {
-	background-color: red;
-	columns: 4;
+	// background-color: red;
 	column-gap: 10px;
+	column-width: 250px;
 	margin: 0;
 	width: 100%;
-	//padding:10px;
 	box-sizing:border-box;
 }
 .container .mat-card{
-	width: calc(100% - 32px);
-	margin-bottom: 10px;
-	overflow: hidden;
 	break-inside: avoid;
-}
-// .container .mat-card img {
-// 	max-width: 100%;
-// }
-// .container .mat-card h2 {
-// 	margin: 10px 0 0;
-// 	padding: 0;
-// 	font-size: 20px;
-// }
-// .container .mat-card p {
-// 	margin: 0;
-// 	padding: 0 0 10px;
-// 	font-size: 16px;
-// }
-
-@media (max-width: 1200px) {
-	.container {
-		columns: 3;
-		width: calc(100% - 40px);
-		box-sizing: border-box;
-		padding: 20px 20px 20px 0;
-	}
-}
-@media (max-width: 768px) {
-	.container {
-		columns: 2;
-	}
-}
-@media (max-width: 480px) {
-	.container {
-		columns: 1;
-	}
+	margin-bottom: 10px;
 }
