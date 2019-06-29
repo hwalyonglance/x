@@ -5,12 +5,12 @@ import { AdminComponent } from './admin.component';
 
 const routes: Routes = [
 	{ path: '', component: AdminComponent, children: [
-		{ path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
-		{ path: 'account', loadChildren: './account/account.module#AccountModule' },
-		{ path: 'author', loadChildren: './author/author.module#AuthorModule' },
-		{ path: 'book', loadChildren: './book/book.module#BookModule' },
-		{ path: 'category', loadChildren: './category/category.module#CategoryModule' },
-		{ path: 'publisher', loadChildren: './publisher/publisher.module#PublisherModule' },
+		{ path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m=>m.DashboardModule) },
+		{ path: 'account', loadChildren: () => import('./account/account.module').then(m=>m.AccountModule) },
+		{ path: 'author', loadChildren: () => import('./author/author.module').then(m=>m.AuthorModule) },
+		{ path: 'book', loadChildren: () => import('./book/book.module').then(m=>m.BookModule) },
+		{ path: 'category', loadChildren: () => import('./category/category.module').then(m=>m.CategoryModule) },
+		{ path: 'publisher', loadChildren: () => import('./publisher/publisher.module').then(m=>m.PublisherModule) },
 	] },
 	{ path: '', pathMatch: 'full', redirectTo: 'dashboard' },
 	{ path: '**', pathMatch: 'full', redirectTo: 'dashboard' },

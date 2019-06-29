@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+// import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule} from '@angular/material/button';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field';
@@ -19,7 +19,7 @@ import { CategoryListComponent } from './category-list/category-list.component';
 
 const ADMIN_CATEGORY_MODULES = [
 	CommonModule,
-	AngularFirestoreModule,
+	// AngularFirestoreModule,
 	FlexLayoutModule,
 	ReactiveFormsModule,
 	

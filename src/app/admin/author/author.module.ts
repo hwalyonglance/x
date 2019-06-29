@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+// import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule} from '@angular/material/button';
 import { MatCardModule} from '@angular/material/card';
@@ -27,7 +27,7 @@ import { AuthorFormComponent } from './author-form/author-form.component';
 	entryComponents: [AuthorFormComponent],
 	imports: [
 		CommonModule,
-		AngularFirestoreModule,
+		// AngularFirestoreModule,
 		FlexLayoutModule,
 		ReactiveFormsModule,
 		

@@ -23,7 +23,7 @@ import { FrontPageComponent } from './front-page/front-page.component';
 		FrontPageComponent,
 	],
 	imports: [
-		BrowserModule,
+		BrowserModule.withServerTransition({appId:'serverApp'}),
 		BrowserAnimationsModule,
 		AngularFireModule.initializeApp({
 			apiKey: "AIzaSyD5cZbgET1MeOa4KdUBiw16-dQ1nnRu-ug",
